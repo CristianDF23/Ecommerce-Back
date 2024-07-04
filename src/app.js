@@ -18,10 +18,13 @@ import MongoSingleton from './config/mongoDB.js';
 const app = express();
 
 app.use(cookieParser());
+
 const corsOptions = {
-    origin: 'https://clever-hamster-56e1b2.netlify.app/',
+    origin: 'https://clever-hamster-56e1b2.netlify.app',
     credentials: true,
 };
+
+app.options('*', cors(corsOptions));
 
 //PUBLIC
 app.use(express.static(__dirname + "/public"))
