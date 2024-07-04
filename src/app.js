@@ -20,8 +20,8 @@ const app = express();
 app.use(cookieParser());
 
 const corsOptions = {
-    origin: 'https://clever-hamster-56e1b2.netlify.app',
-    credentials: true,
+    origin: '*',
+    credentials: true
 };
 
 app.options('*', cors(corsOptions));
