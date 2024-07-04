@@ -2,13 +2,13 @@ import { userNew, extractedToken } from '../services/auth.services.js';
 import { insertCart } from '../services/carts.services.js';
 import { insertUser, delUser, findUserByEmail, upUser, allUsers, findUserById } from '../services/users.services.js';
 import { isValidatePassword, createHash } from '../utils/bcrypt.js'
-import {deletedAccount} from '../services/mail.services.js'
-import {appLogger} from '../config/loggers.js'
+import { deletedAccount } from '../services/mail.services.js'
+import { appLogger } from '../config/loggers.js'
 import { fileURLToPath } from 'url';
 import fs from 'fs'
 import jwt from 'jsonwebtoken'
 import moment from 'moment'
-import path, {join} from 'path';
+import path, { join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -126,7 +126,7 @@ export const deleteUsers = async (req, res) => {
             const userLastConnection = moment(user.last_connection);
             const currentDay = moment();
             const daysDisconnected = currentDay.diff(userLastConnection, 'days');
-            
+
             if (daysDisconnected > 2) {
                 await delUser(user._id);
                 await deletedAccount(user.email)
@@ -148,7 +148,7 @@ export const deleteUser = async (req, res) => {
             req.logger.warning(`Error al eliminar el usuario id: ${req.params.uid}`);
         }
         req.logger.info(`Usuario eliminado correctamente`);
-        return res.status(200).json({Msg: "usuario eliminado correctamente"});
+        return res.status(200).json({ Msg: "usuario eliminado correctamente" });
 
     } catch (error) {
         req.logger.error(`Error al eliminar el usuario: ${error}`);
@@ -212,7 +212,7 @@ export const updateDocuments = async (req, res) => {
             const oldProfileDoc = isUserFound.documents.find(doc => doc.reference.includes('/documents/profiles'));
             if (oldProfileDoc) {
                 const oldFilePath = join(__dirname, 'public', 'documents', 'profiles', path.basename(oldProfileDoc.reference));
-                
+
                 if (fs.existsSync(oldFilePath)) {
                     fs.unlinkSync(oldFilePath);
                 }
@@ -245,7 +245,7 @@ export const updateDocuments = async (req, res) => {
         isUserFound.documents = isUserFound.documents.concat(documentArray);
         await isUserFound.save();
         req.logger.info(`Documentacion actualizada con exito - at ${new Date().toLocaleDateString()} / ${new Date().toLocaleTimeString()}`);
-        res.status(200).json({Msg: 'Documentacion actualizada con exito.', doc: isUserFound.documents});
+        res.status(200).json({ Msg: 'Documentacion actualizada con exito.', doc: isUserFound.documents });
     } catch (error) {
         req.logger.error(`Error al actualizar los documentos`);
         res.status(500).send('Error al actualizar los documentos: ' + error.message);
@@ -256,7 +256,7 @@ export const updateDocuments = async (req, res) => {
 export const updateUserRol = async (req, res) => {
     try {
         const userId = req.params.uid;
-        
+
         const isUserFound = await findUserById(userId);
 
         if (!isUserFound) {
@@ -273,7 +273,7 @@ export const updateUserRol = async (req, res) => {
             return res.status(400).send('Documentacion faltante, agregue todos los documentos');
         }
 
-        await upUser(isUserFound._id, {rol: 'Premium'})
+        await upUser(isUserFound._id, { rol: 'Premium' })
         req.logger.info(`Rol de usuario actualizado correctamente. - at ${new Date().toLocaleDateString()} / ${new Date().toLocaleTimeString()}`);
         res.status(200).json('Rol de usuario actualizado correctamente.');
     } catch (error) {
