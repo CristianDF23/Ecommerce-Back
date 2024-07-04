@@ -1,0 +1,47 @@
+paths:
+  /api/carts/{cid}/product/{pid}:
+    post:
+      summary: Agregar un producto al carrito (No permite agregar si no se inicia sesion de usuario)
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito
+        - in: path
+          name: pid
+          required: true
+          description: ID del producto
+      security:
+        - JWTAuth: []
+      responses:
+        "201":
+          description: Producto agregado al carrito con éxito
+        "400":
+          description: Error al agregar el producto al carrito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error
+                example:
+                  example1:
+                    Msg: "No se encontró el producto"
+                  example2:
+                    Msg: "No se encontró el carrito"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error interno del servidor
+                example:
+                  Msg: "Error interno del servidor"

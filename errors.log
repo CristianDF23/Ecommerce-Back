@@ -1,0 +1,2 @@
+{"level":"fatal","message":"Test Logger Level Fatal --> GET en /loggerTest - at 17/5/2024 - 20:38:03"}
+{"level":"error","message":"Test Logger Level Error --> GET en /loggerTest - at 17/5/2024 - 20:38:03"}

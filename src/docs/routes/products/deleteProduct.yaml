@@ -1,0 +1,56 @@
+paths:
+  /api/products/{pid}:
+    delete:
+      summary: Eliminar un producto por ID
+      tags:
+        - Products
+      security:
+        - JWTAuth: []
+      parameters:
+        - in: path
+          name: pid
+          description: ID del producto a eliminar
+          required: true
+      responses:
+        "200":
+          description: Producto eliminado con éxito
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Product'
+        "400":
+          description: Usuario sin autorización para eliminar este producto
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error
+                example:
+                  Msg: "Usuario sin autorizacion para eliminar este producto"
+        "404":
+          description: Producto no encontrado
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error
+                example:
+                  Msg: "Producto no encontrado"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error interno del servidor
+                example:
+                  Msg: "Error interno del servidor"

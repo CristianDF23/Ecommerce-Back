@@ -1,0 +1,48 @@
+paths:
+  /api/carts/deleteCart/{cid}:
+    delete:
+      summary: Eliminar un carrito
+      tags:
+        - Carts
+      parameters:
+        - in: path
+          name: cid
+          required: true
+          description: ID del carrito a eliminar
+      responses:
+        "200":
+          description: Carrito eliminado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de éxito
+                example:
+                  Msg: "Carrito eliminado correctamente"
+        "400":
+          description: Error al eliminar el carrito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error
+                example:
+                  Msg: "No se pudo eliminar el carrito"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error interno del servidor
+                example:
+                  Msg: "Error interno del servidor"

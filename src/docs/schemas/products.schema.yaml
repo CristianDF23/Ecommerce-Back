@@ -1,0 +1,75 @@
+# Products
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID autogenerado por MongoDb
+        brand:
+          type: string
+          description: La marca del producto.
+        title:
+          type: string
+          description: El título del producto.
+        description:
+          type: string
+          description: La descripción del producto.
+        price:
+          type: number
+          description: El precio del producto.
+        thumbnails:
+          type: object
+          description: Imágenes del producto.
+          properties:
+            one:
+              type: string
+              description: URL de la primera imagen del producto.
+            two:
+              type: string
+              description: URL de la segunda imagen del producto.
+            three:
+              type: string
+              description: URL de la tercera imagen del producto.
+            four:
+              type: string
+              description: URL de la cuarta imagen del producto.
+        code:
+          type: string
+          description: Código único del producto.
+        stock:
+          type: number
+          description: Cantidad disponible del producto en inventario.
+        status:
+          type: boolean
+          description: Estado del producto (disponible o no).
+        category:
+          type: string
+          description: La categoría a la que pertenece el producto.
+        owner:
+          type: string
+          description: Propietario del producto.
+      required:
+        - title
+        - description
+        - price
+        - code
+        - stock
+        - status
+        - category
+      example:
+        _id: "6642dcec94c847351af4e13c"
+        code: "NK-0020"
+        status: true
+        stock: 10
+        brand: "Nike"
+        title: "Campera Jordan Flight MVP"
+        category: "Indumentaria"
+        thumbnails:
+          one: "url img"
+          two: "url img"
+          three: "url img"
+          four: "url img"
+        description: "Dile al mundo que tenga cuidado porque ya estás aquí. Esta chamarra audaz y ligera te cubre, ya sea que estés practicando tiros informales con amigos o sentado a un lado de la cancha durante el partido. Las vibras retro aportan el calor, desde el diseño con cierre de un cuarto hasta los grandes gráficos serigrafiados que recuerdan a tu ícono favorito."
+        price: 54799

@@ -1,0 +1,24 @@
+# Carts
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id: 
+          type: string
+          description: ID autogenerado por MongoDb
+        products:
+          type: array
+          description: Lista de productos agregados al carrito
+          items:
+            type: object
+            properties:
+              product:
+                type: string
+                description: ID del producto tomado de la lista de productos
+              quantity:
+                type: number
+                description: Cantidad del producto en el carrito
+      example:
+        _id: "613f2337d6e87a12e409e1c5"
+        products: []

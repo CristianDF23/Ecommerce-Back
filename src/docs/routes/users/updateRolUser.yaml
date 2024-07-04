@@ -1,0 +1,70 @@
+paths:
+  /api/auth/premium/{uid}:
+    put:
+      summary: Actualizar información de un usuario
+      tags:
+        - Users
+      parameters:
+        - in: path
+          name: uid
+          required: true
+          description: ID del usuario a actualizar
+          schema:
+            type: string
+          example: "123456789"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: Nuevo nombre de usuario
+                  example: "john_doe_updated"
+                email:
+                  type: string
+                  description: Nuevo correo electrónico del usuario
+                  example: "john.doe@example.com"
+      responses:
+        "200":
+          description: Usuario actualizado con éxito
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: ID del usuario actualizado
+                  username:
+                    type: string
+                    description: Nombre de usuario actualizado
+                  email:
+                    type: string
+                    description: Correo electrónico actualizado
+        "400":
+          description: Error en la solicitud
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error
+                example:
+                  Msg: "Usuario no encontrado"
+        "500":
+          description: Error interno del servidor
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Msg:
+                    type: string
+                    description: Mensaje de error interno del servidor
+                example:
+                  Msg: "Error en updateUser: mensaje de error"
