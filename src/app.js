@@ -18,14 +18,14 @@ import MongoSingleton from './config/mongoDB.js';
 const app = express();
 
 app.use(cookieParser());
-const corsOptions = {
-    credentials: true,
-};
+// const corsOptions = {
+//     credentials: true,
+// };
 
 //PUBLIC
 app.use(express.static(__dirname + "/public"))
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 //SESSION
 app.use(session({
