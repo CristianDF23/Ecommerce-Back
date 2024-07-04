@@ -26,7 +26,7 @@ const corsOptions = {
 //PUBLIC
 app.use(express.static(__dirname + "/public"))
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 //SESSION
 app.use(session({
