@@ -17,7 +17,7 @@ const app = express();
 
 // Configuración CORS para permitir cualquier origen
 const corsOptions = {
-    origin: '*',
+    origin: ['https://clever-hamster-56e1b2.netlify.app', 'https://ecommerce-front-production-4595.up.railway.app'],
     credentials: true,
 };
 
