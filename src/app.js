@@ -18,9 +18,10 @@ import MongoSingleton from './config/mongoDB.js';
 const app = express();
 
 app.use(cookieParser());
-// const corsOptions = {
-//     credentials: true,
-// };
+const corsOptions = {
+    origin: 'https://clever-hamster-56e1b2.netlify.app/',
+    credentials: true,
+};
 
 //PUBLIC
 app.use(express.static(__dirname + "/public"))
@@ -47,9 +48,9 @@ app.use(passport.initialize());
 //Swagger Config
 
 const swaggerOptions = {
-    definition:{
-        openapi:'3.0.1',
-        info:{
+    definition: {
+        openapi: '3.0.1',
+        info: {
             title: 'Documentación API E-commerce',
             description: 'Documentacion de E-commerce'
         }
